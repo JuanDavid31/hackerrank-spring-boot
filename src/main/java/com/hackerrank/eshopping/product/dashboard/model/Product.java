@@ -1,10 +1,17 @@
 package com.hackerrank.eshopping.product.dashboard.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class Product {
     private Long id;
     private String name;
     private String category;
+    @JsonProperty("retail_price")
     private Double retailPrice;
+    @JsonProperty("discounted_price")
     private Double discountedPrice;
     private Boolean availability;
 
@@ -66,5 +73,25 @@ public class Product {
 
     public void setAvailability(Boolean availability) {
         this.availability = availability;
+    }
+
+//    public double getDiscountedPercentage() {
+//        double v = ((this.getRetailPrice() - this.getDiscountedPrice()) / this.getRetailPrice()) * 100;
+//        DecimalFormat df = new DecimalFormat("#.##");
+//        df.setRoundingMode(RoundingMode.CEILING);
+//        return Double.parseDouble(df.format(v));
+//    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", category='" + category + '\'' +
+            ", retailPrice=" + retailPrice +
+            ", discountedPrice=" + discountedPrice +
+            ", availability=" + availability +
+            //", discountedPercentage=" + getDiscountedPercentage() +
+            '}';
     }
 }
