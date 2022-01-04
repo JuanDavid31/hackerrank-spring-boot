@@ -2,17 +2,28 @@ package com.hackerrank.eshopping.product.dashboard.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Table(name = "products")
+@Entity
 public class Product {
+
+    @Id
     private Long id;
+    @Column
     private String name;
+    @Column
     private String category;
     @JsonProperty("retail_price")
+    @Column(name = "retail_price")
     private Double retailPrice;
     @JsonProperty("discounted_price")
+    @Column(name = "discounted_price")
     private Double discountedPrice;
+    @Column
     private Boolean availability;
 
     public Product() {
@@ -75,13 +86,6 @@ public class Product {
         this.availability = availability;
     }
 
-//    public double getDiscountedPercentage() {
-//        double v = ((this.getRetailPrice() - this.getDiscountedPrice()) / this.getRetailPrice()) * 100;
-//        DecimalFormat df = new DecimalFormat("#.##");
-//        df.setRoundingMode(RoundingMode.CEILING);
-//        return Double.parseDouble(df.format(v));
-//    }
-
     @Override
     public String toString() {
         return "Product{" +
@@ -91,7 +95,6 @@ public class Product {
             ", retailPrice=" + retailPrice +
             ", discountedPrice=" + discountedPrice +
             ", availability=" + availability +
-            //", discountedPercentage=" + getDiscountedPercentage() +
             '}';
     }
 }
